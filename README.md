@@ -1,7 +1,35 @@
 # IMC Prosperity 4 — A Post-Mortem
 
-**Rank 572 / 18,803.** This is not a highlight reel. It is a review of five submissions I got
-wrong, and what the right answers were.
+<div align="center">
+
+**Team MP123 · 572 / 18,803 overall · 10th in China**
+
+</div>
+
+<p align="center">
+  <img src="assets/leaderboard.png" width="88%" alt="Final leaderboard"><br>
+  <sub><b>Overall #572 · Algorithmic #989 · Manual #225 · China #10</b>, 303,080 XIRECs</sub>
+</p>
+
+This is not a highlight reel. It is a review of five submissions I got wrong, and what the
+right answers were.
+
+<details>
+<summary><b>The field</b> — 18,803 teams, 30,703 players, 117 countries</summary>
+<br>
+<p align="center"><img src="assets/competition_scale.png" width="80%" alt="Competition scale"></p>
+</details>
+
+<details>
+<summary><b>China standings</b> — 10th of the country's teams</summary>
+<br>
+<p align="center"><img src="assets/leaderboard_country.png" width="80%" alt="China leaderboard"></p>
+</details>
+
+---
+
+**The two tracks came out very differently: algorithmic #989, manual #225.** The manual puzzles
+were the stronger half and are reviewed [here](manual/); the five algorithmic rounds are below.
 
 Prosperity runs like an exam: five rounds, five markets, each testing something specific. Each
 round here gets the same treatment — what I submitted, what it did, what the market actually

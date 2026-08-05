@@ -3,24 +3,6 @@
 Every round shipped a one-shot puzzle alongside the algorithm — a few parameters, submitted
 once, scored separately. In Rounds 1 and 2 it was the larger contributor.
 
-**In Round 3 the manual puzzle scored twelve times the algorithm and ranked five times better**
-— 70,444 at 442nd against 5,841 at 2,093rd. On the evidence available it was the better half of
-the competition.
-
-**This record is incomplete**, and the gaps are stated rather than filled in. Screenshots
-survive for every submission and for three of the five results; the working notebooks for three
-rounds do not.
-
-| Round | puzzle | my submission | my score |
-|---|---|---|---|
-| 1 | two sealed bids against a stale book | ✅ | ✅ |
-| 2 | budget split across three multiplicative pillars | ✅ | ✅ |
-| 3 | two-bid game with a cubic penalty | ✅ | ✅ |
-| 4 | twelve-contract option portfolio | ✅ | ❌ |
-| 5 | news-driven allocation with a quadratic fee | ✅ | ❌ |
-
----
-
 ## Round 1 — two sealed bids
 
 **The puzzle.** Two goods, each with a stale order book. Anything acquired is resold at a

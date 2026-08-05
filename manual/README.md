@@ -142,6 +142,10 @@ range, so the final number did not come from the model that was built.
 
 ## Round 4 — the option portfolio
 
+**Scored 72,278, rank 178 — the best single-round rank of the competition, on either track.**
+
+<p align="center"><img src="../assets/manual_r4_result.png" width="72%" alt="Round 4 result"></p>
+
 **The puzzle.** Twelve contracts on an underlying at 50 with 251% annualised volatility: six
 three-week vanillas, two two-week vanillas struck at 50, a chooser, a binary 40-put and a
 knockout 45-put. Limits 200 on the underlying, 50 per option, 500 on the knockout. The
@@ -171,7 +175,8 @@ contracts, same directions, same sizes at the limit. The differences are all siz
 | knockout 45-put | **390** | 500 |
 | 35-put | direction chosen, **volume 0** | not held |
 
-**The score is not recorded**, so the sizing differences cannot be priced.
+The score — **72,278 at rank 178** — places this in the top 1% for the round, so whatever the
+sizing cost, the portfolio construction was substantially right.
 
 Two observations that do not need the score. **The 35-put has a direction selected and a
 volume of zero** — a partially entered leg, not a decision. And the two legs sized below their
@@ -187,6 +192,10 @@ short.
 ---
 
 ## Round 5 — news-driven allocation
+
+**Scored 82,623, rank 538 — the largest single manual contribution of the competition.**
+
+<p align="center"><img src="../assets/manual_r5_result.png" width="72%" alt="Round 5 result"></p>
 
 **The puzzle.** Nine goods, a 1,000,000 budget, each position a signed percentage, with a
 **quadratic fee $f(x) = x^2 \times 1{,}000{,}000$**. The only input is a newspaper: one short
@@ -230,18 +239,25 @@ so a small $r$, so a small $x$. It received 19% and cost 36,100 in fee alone.
 
 > **The rule $x^\star = r/2$ is not a heuristic; it is the exact solution to the fee the puzzle
 > specifies.** Spending the full budget means every allocation was set by something other than
-> that rule. **The score is not recorded**, so the cost cannot be quantified — but the fee can:
-> 187,200 against 77,100 for a portfolio holding similar views.
+> that rule.
+>
+> It still scored 82,623 — the largest single manual contribution of the competition — but the
+> fee is the part that was avoidable: **187,200 paid, against 77,100 for a portfolio holding
+> similar views at half the size.**
 
 ---
 
 ## What is missing, and why it matters
 
-| | missing |
-|---|---|
-| Round 3 | the submission and the score — the analysis is the most developed of the five and cannot be graded |
-| Rounds 4, 5 | the scores — the submissions are recorded, so the sizing choices are visible but not priced |
+Every submission and every score survives. **The working does not.**
 
-The algorithmic rounds are fully reconstructable because the exchange returns a log. **The
-manual rounds return nothing but a number on a results page**, so a review of them depends
-entirely on what was saved at the time. Three of five were not.
+| | what is missing |
+|---|---|
+| Round 3 | nothing — submission, result and the 36-cell notebook all survive |
+| Rounds 1, 2, 4, 5 | the notebooks. The submissions and scores are recorded, but the reasoning that produced each number is gone |
+
+The algorithmic rounds are fully reconstructable because the exchange returns a log that can be
+replayed against the original source. **The manual rounds return a number on a results page and
+nothing else**, so the only record of *how* an answer was reached is whatever was saved at the
+time. Round 3's notebook is the one case where that reasoning can be compared against the
+outcome — and it shows the submitted bid sitting below the range its own model recommended.

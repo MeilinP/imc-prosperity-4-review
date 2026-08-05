@@ -44,10 +44,11 @@ was, and the strategy the evidence supports.
 | **[Round 5](rounds/05/)** | fifty products in ten groups | [notebook](research/round5.ipynb) · [specification](rounds/05/answer.md) |
 
 Each round also shipped a one-shot manual puzzle, scored separately:
-**[the manual track](manual/)**. In Round 3 it scored **70,444 at rank 442** against the
-algorithm's 5,841 at rank 2,093 — twelve times the contribution and five times the rank. That
-record is incomplete, since the exchange returns a log for the algorithm and nothing but a
-number for the puzzle, and the gaps are stated rather than filled.
+**[the manual track](manual/)**. Over the three rounds scored individually it produced
+**225,345 against the algorithm's 77,736** — 2.9× the contribution, and Round 4's rank 178 was
+the best single-round result of the competition on either track. What the algorithm has and the
+puzzles do not is a record of the working: the exchange returns a log that can be replayed,
+while a puzzle returns one number.
 
 ---
 

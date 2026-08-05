@@ -1,4 +1,4 @@
-# IMC Prosperity 4 — A Post-Mortem
+# IMC Prosperity 4 
 
 <div align="center">
 

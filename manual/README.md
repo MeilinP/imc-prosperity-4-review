@@ -1,7 +1,5 @@
 # The Manual Track
 
-Every round shipped a one-shot puzzle alongside the algorithm — a few parameters, submitted
-once, scored separately. In Rounds 1 and 2 it was the larger contributor.
 
 ## Round 1 — two sealed bids
 

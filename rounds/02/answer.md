@@ -61,7 +61,7 @@ $\bar P$ must not be a constant in the source.
 With half-life $h \approx 130$ ticks, a 10,000-tick session holds roughly $M/2h \approx 40$
 independent observations, so
 
-$$\operatorname{se}(\hat{\bar P}) \approx \frac{\sigma_{\text{stat}}}{\sqrt{40}} \approx \frac{5.3}{6.3} \approx 0.84$$
+$$\mathrm{se}(\hat{\bar P}) \approx \frac{\sigma_{\text{stat}}}{\sqrt{40}} \approx \frac{5.3}{6.3} \approx 0.84$$
 
 against a **between-day shift of 18.5**. The prior is worth less than a single session of
 data.

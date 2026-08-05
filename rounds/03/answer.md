@@ -96,7 +96,7 @@ steer VELVETFRUIT_EXTRACT's reservation prices toward `hedge`
 
 ### 3.1 Effort allocation
 
-$$\text{PACK }(4{,}573) \;>\; \text{FRUIT }(1{,}672) \;>\; \text{VEV\_4000 }(1{,}528) \;>\; \text{the other nine }(576 \text{ combined})$$
+$$\text{PACK }(4{,}573) \;>\; \text{FRUIT }(1{,}672) \;>\; \text{VEV } 4000\ (1{,}528) \;>\; \text{the other nine }(576 \text{ combined})$$
 
 **All ten vouchers together are worth less than half of `HYDROGEL_PACK` alone.** The
 submission's attention ran in the reverse order.

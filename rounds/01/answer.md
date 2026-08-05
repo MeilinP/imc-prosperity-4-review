@@ -117,14 +117,14 @@ Bucketing by deviation from the mean and measuring the realised move over the ne
 
 | deviation | subsequent move | $t$ |
 |---:|---:|---:|
-| $< -12$ | **+7.31** | 2.4 |
-| $-12$ … $-9$ | +4.98 | 2.5 |
-| $-9$ … $-6$ | +3.50 | 3.0 |
-| $-3$ … $-1$ | +0.89 | 1.3 |
-| $-1$ … $+1$ | +0.09 | 0.1 |
-| $+3$ … $+6$ | −1.62 | −2.1 |
-| $+9$ … $+12$ | −5.22 | −3.0 |
-| $> +12$ | **−8.75** | −2.8 |
+| below −12 | **+7.31** | 2.4 |
+| −12 … −9 | +4.98 | 2.5 |
+| −9 … −6 | +3.50 | 3.0 |
+| −3 … −1 | +0.89 | 1.3 |
+| −1 … +1 | +0.09 | 0.1 |
+| +3 … +6 | −1.62 | −2.1 |
+| +9 … +12 | −5.22 | −3.0 |
+| above +12 | **−8.75** | −2.8 |
 
 Monotone across eleven buckets, crossing zero at zero deviation, and **linear**:
 
@@ -142,7 +142,7 @@ offers less. **The directional view and the quoting centre are one object.**
 
 Target inventory is linear in deviation and saturates at the limit:
 
-$$q^\star(F) = -L\cdot\operatorname{clip}\!\left(\frac{F - \bar P}{K},\ -1,\ 1\right)$$
+$$q^\star(F) = -L\cdot\mathrm{clip}\!\left(\frac{F - \bar P}{K},\ -1,\ 1\right)$$
 
 The **linear shape is measured** (§4.2). $K$ — the deviation at which the position saturates
 — is **not derivable from the data**: it trades expected return against inventory risk and
@@ -191,7 +191,7 @@ $$F_i \leftarrow F_i + \beta\,\phi_i, \qquad \beta \approx 2.5$$
 | Reversion coefficient −0.5 over $h$ | agrees with the independently measured half-life |
 | Quote size 10 | flow median 5, max 13; 10 captures 99.8% |
 | Quotes clipped, not skipped | posting inside the touch is free when on the right side of $\Delta V$ |
-| Imbalance lean $\beta \approx 2.5$ | coefficient +2.43 / +2.56 against the outer fair, $t = 37$ / $45$, persisting to $h{=}50$ |
+| Imbalance lean $\beta \approx 2.5$ | coefficient +2.43 / +2.56 against the outer fair, $t = 37$ / 45, persisting to $h{=}50$ |
 | Imbalance not crossable | predicts 4.9 against a crossing cost of 8 |
 | Fair from best mid, not largest level | largest-level midpoint has higher residual sd against ROOT's known line |
 | **$K$ (saturation deviation)** | **not measurable — a stated risk preference** |

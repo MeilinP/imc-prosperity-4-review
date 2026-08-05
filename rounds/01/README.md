@@ -40,7 +40,7 @@ $$\tilde f_t = f_t - 0.3\,s_t \cdot \tfrac{q}{80} \qquad (s_t = \text{spread})$$
 
 Lift offers below $\tilde f_t$, hit bids above it, and post at $b_t+1$ / $a_t-1$ whenever
 those prices sit on the profitable side of $\tilde f_t$. Quote size
-$\operatorname{clip}(\lfloor 0.6\,\bar v_t \rfloor, 10, 30)$.
+$\mathrm{clip}(\lfloor 0.6\,\bar v_t \rfloor, 10, 30)$.
 
 ---
 

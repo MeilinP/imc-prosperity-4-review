@@ -127,7 +127,7 @@ $$\left(\frac{920-859}{920-846}\right)^3 = \left(\frac{61}{74}\right)^3 = 0.560$
 
 **Forty-four percent of the second leg was given away.** What that cost, holding $b_1$ fixed:
 
-| $b_2$ | 846 (submitted) | 855 | **860** | 865 | 880 |
+| second bid | 846 (submitted) | 855 | **860** | 865 | 880 |
 |---|---:|---:|---:|---:|---:|
 | EP per unit | 71.78 | 77.40 | **81.04** | 80.06 | 75.94 |
 | implied score | **70,444** | 75,965 | **≈ 79,500** | 78,574 | 74,532 |

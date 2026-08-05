@@ -4,3 +4,4 @@ __pycache__/
 data/round*/
 *.log
 *.json
+CLAUDE.md

@@ -1,4 +1,4 @@
-# IMC Prosperity 4 — A Post-Mortem
+# IMC Prosperity 4 
 
 **Rank 572 / 18,803.** This is not a highlight reel. It is a review of five submissions I got
 wrong, and what the right answers were.

@@ -11,8 +11,7 @@
   <sub><b>Overall #572 · Algorithmic #989 · Manual #225 · China #10</b>, 303,080 XIRECs</sub>
 </p>
 
-This is not a highlight reel. It is a review of five submissions I got wrong, and what the
-right answers were.
+Five rounds, five markets, each testing something specific. This review reopens all five: what the round was actually asking, what I submitted, and the answer the evidence supports — reconstructed from the exchange log and checked against it.
 
 <details open>
 <summary><b>The field</b> — 18,803 teams, 30,703 players, 117 countries</summary>

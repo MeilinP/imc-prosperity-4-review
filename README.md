@@ -14,7 +14,7 @@
 This is not a highlight reel. It is a review of five submissions I got wrong, and what the
 right answers were.
 
-<details>
+<details open>
 <summary><b>The field</b> — 18,803 teams, 30,703 players, 117 countries</summary>
 <br>
 <p align="center">

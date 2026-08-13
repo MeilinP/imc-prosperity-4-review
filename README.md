@@ -17,7 +17,10 @@ right answers were.
 <details>
 <summary><b>The field</b> — 18,803 teams, 30,703 players, 117 countries</summary>
 <br>
-<p align="center"><img src="assets/competition_scale.png" width="80%" alt="Competition scale"></p>
+<p align="center">
+  <img src="assets/competition_scale.png" width="62%" alt="Prosperity 4 light-speed overview"><br>
+  <sub>1,549 universities · 556,223 Python programs uploaded · 44,317 manual submissions · 1,153,901,776 XIRECs earned in total</sub>
+</p>
 </details>
 
 <details>

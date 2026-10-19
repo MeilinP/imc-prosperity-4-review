@@ -1,194 +1,123 @@
-# IMC Prosperity 4 
+# IMC Prosperity 4 — Algorithmic Trading Competition & Research Reconstruction
 
 <div align="center">
 
-**Team MP123 · 572 / 18,803 overall · 10th in China**
+**Team MP123 · #572 / 18,803 overall (Top 3.1%) · #10 in China**  
+**#225 manual · #989 algorithmic · 303,080 XIRECs**
 
 </div>
 
 <p align="center">
-  <img src="assets/leaderboard.png" width="88%" alt="Final leaderboard"><br>
-  <sub><b>Overall #572 · Algorithmic #989 · Manual #225 · China #10</b>, 303,080 XIRECs</sub>
+  <img src="assets/leaderboard.png" width="88%" alt="IMC Prosperity 4 final leaderboard"><br>
+  <sub>Official competition results for Team MP123.</sub>
 </p>
 
-Five rounds, five markets, each testing something specific. This review reopens all five: what the round was actually asking, what I submitted, and the answer the evidence supports — reconstructed from the exchange log and checked against it.
+## Competition Performance
 
-<details open>
-<summary><b>The field</b> — 18,803 teams, 30,703 players, 117 countries</summary>
-<br>
-<p align="center">
-  <img src="assets/competition_scale.png" width="62%" alt="Prosperity 4 light-speed overview"><br>
-  <sub>1,549 universities · 556,223 Python programs uploaded · 44,317 manual submissions · 1,153,901,776 XIRECs earned in total</sub>
-</p>
-</details>
+IMC Prosperity 4 combined five rounds of algorithmic trading with a separately scored manual track. Team MP123 finished **#572 among 18,803 teams (Top 3.1%)**, including **#225 in manual trading**, **#989 in algorithmic trading**, and **#10 in China**.
 
-<details>
-<summary><b>China standings</b> — 10th of the country's teams</summary>
-<br>
-<p align="center"><img src="assets/leaderboard_country.png" width="80%" alt="China leaderboard"></p>
-</details>
+These are the original competition results. No revised or simulated strategy in this repository is presented as a live competition rank.
 
----
+## What This Repository Is
 
-**The two tracks came out very differently: algorithmic #989, manual #225.** The manual puzzles
-were the stronger half and are reviewed [here](manual/); the five algorithmic rounds are below.
+This repository combines three distinct layers:
 
-Prosperity runs like an exam: five rounds, five markets, each testing something specific. Each
-round here gets the same treatment — what I submitted, what it did, what the market actually
-was, and the strategy the evidence supports.
+1. **Competition-time record** — the original submitted Python strategies, exchange logs, fills, scores, and leaderboard evidence.
+2. **Post-competition research** — statistical diagnosis of each market, reconstruction of algorithm decisions, and analysis of fair value, execution, and risk.
+3. **Counterfactual research** — revised rules or simulations used to test specific hypotheses. These are explicitly labelled and are not treated as live results.
 
-| | | |
-|---|---|---|
-| **[Round 1](rounds/01/)** | one trending and one mean-reverting instrument | [notebook](research/round1.ipynb) · [specification](rounds/01/answer.md) |
-| **[Round 2](rounds/02/)** | the same two, a new day — do the parameters still hold? | [notebook](research/round2.ipynb) · [specification](rounds/02/answer.md) |
-| **[Round 3](rounds/03/)** | spot plus ten option strikes | [notebook](research/round3.ipynb) · [specification](rounds/03/answer.md) |
-| **[Round 4](rounds/04/)** | the same market, counterparty names revealed | [notebook](research/round4.ipynb) · [specification](rounds/04/answer.md) |
-| **[Round 5](rounds/05/)** | fifty products in ten groups | [notebook](research/round5.ipynb) · [specification](rounds/05/answer.md) |
+The objective is not to rewrite the competition after the fact. It is to show how trading hypotheses can be made measurable, replayed against the original evidence, and revised without obscuring what was actually submitted.
 
-Each round also shipped a one-shot manual puzzle, scored separately:
-**[the manual track](manual/)**. Over the three rounds scored individually it produced
-**225,345 against the algorithm's 77,736** — 2.9× the contribution, and Round 4's rank 178 was
-the best single-round result of the competition on either track. What the algorithm has and the
-puzzles do not is a record of the working: the exchange returns a log that can be replayed,
-while a puzzle returns one number.
+## Research / Trading Framework
 
----
+Every round is examined through the same sequence:
 
-## What each round was testing, and what I answered
+> **market structure → statistical diagnosis → fair value → tradability and execution cost → trading rule → validation and replay**
 
-| | the question | the answer | what I submitted |
-|---|---|---|---|
-| **1** | Identify each price process and trade it accordingly | ROOT is a deterministic line; ASH is mean-reverting with a ~130-tick half-life | traded the trend correctly but wrote **no sell branch at all**; never used ASH's reversion — session mark-to-market on inventory was **+101** |
-| **2** | Do last round's conclusions still hold? | one parameter is a structural identity and extrapolates exactly; the other is an estimate and **had already broken** | re-verified neither |
-| **3** | Where does an option's fair value come from? | from an **identity** where time value vanishes; the spot products are random walks; `HYDROGEL_PACK` alone outweighs all ten vouchers | Black-Scholes with a fitted smile, a mean-reversion rule on two random walks, and the effort spent on the vouchers |
-| **4** | Is the new information a signal? | **no** — three days cannot separate it from noise | didn't use it (correct, by accident) |
-| **5** | Which of fifty products' relationships are real? | exactly one — a five-product basket summing to a constant | traded five fitted pairs, **all random walks**; the whole score came from **six bets on sixty lots** |
+The toolkit includes variance ratios, autocorrelation decay, residual analysis, trend-versus-mean-reversion diagnosis, structural pricing identities, Black–Scholes and option fair value, depth imbalance, aggressor flow, spread economics, cross-asset and basket relationships, counterparty-signal analysis, and inventory/position constraints.
 
----
+The central discipline is to separate a statistically interesting relationship from an executable trade. A fair-value identity can be valuable even when the spread makes the apparent arbitrage untradeable; a low variance ratio can reflect microstructure noise rather than persistent mean reversion; and realized PnL alone does not validate the logic that produced it.
 
-## Four findings
+## Key Findings Across Five Rounds
 
-**A bug that saved money.** In Round 3 a threshold sat 47% above its signal's all-time maximum,
-so ten of twelve products never traded — apparently the reason the round scored badly.
-Reopening the gate, changing one constant, makes it *worse*: the suppressed strategy was itself
-unprofitable. The bug concealed a design error rather than causing one, and the obvious fix
-would have cost money. [→](rounds/03/README.md)
+- **A low variance ratio is not sufficient evidence of tradeable mean reversion.** Autocorrelation decay separates persistent reversion from residual noise that disappears within a tick.
+- **Structural identities can improve fair value without creating executable arbitrage.** Deep-in-the-money option parity in Round 3 and the five-product PEBBLES identity in Round 5 were both tighter than fitted alternatives, but their deviations sat inside multi-leg execution costs.
+- **Pooling across days can manufacture counterparty significance.** Round 4's apparent signal did not survive day-by-day stability checks, so preserving the existing model was more defensible than fitting to three days of participant labels.
+- **Realized PnL is not the same as evidence that a strategy was correct.** Directional inventory can profit from the scored day's drift even when its measured predictive relationship is negligible.
+- **Individual assets can resemble random walks while cross-asset structure remains.** Round 5's fitted pairs did not revert, yet one five-product group maintained a stable sum across all observed days.
 
-**Pooling manufactured a signal.** In Round 4 a counterparty's trades appeared to predict
-prices on one product — $t = -2.70$ across the pre-round days. Reported *per day* the estimate
-is significant on none of them, and the same counterparty is equally consistent on a second
-product where it reverses sharply on the day that counted. **Nothing in the pre-round data
-separates the two.** A team finishing 64th reached the same conclusion by a different route and
-recovered \$15.8k by switching their version off. [→](rounds/04/README.md)
+## Representative Research Case — Round 3 Options Market
 
-**Structure exists; arbitrage does not.** Two rounds contain exact identities — deep
-in-the-money options at $S-K$ to within 0.01, and a five-product basket summing to 50,000.
-Neither can be traded: the deviations (0.8 and 2.8) sit entirely inside the cost of executing
-them (21 and 65). Both are worth having anyway, as fair-value estimators no fitting can match.
-[→](rounds/03/README.md) · [→](rounds/05/README.md)
+**Market.** Round 3 introduced two spot products and ten call vouchers across strikes, with position limits and a live order book.
 
-**Winning and being right are different.** Round 2's outperformance came from carrying
-inventory on a day that drifted up — correlation between position held and the next tick's move
-was **+0.024**. Round 5's entire score came from sixty lots while four thousand lots lost money.
-Round 1's much larger directional profit, by contrast, is 96% of what the optimal policy
-achieves. [→](rounds/02/README.md)
+**Competition-time implementation.** The submitted source used moving-average mean reversion for the two spot products and Black–Scholes values from a fitted volatility smile for six voucher strikes. A volatility gate prevented the voucher module from emitting orders; the original code is preserved in [`submissions/round3.py`](submissions/round3.py).
 
----
+**Retrospective diagnosis.** The spot series were consistent with random walks rather than the persistent reversion seen earlier. Across the option chain, the deep-in-the-money vouchers satisfied `C ≈ S − K` to within 0.01, providing an observable fair-value identity that required no volatility estimate.
 
-## The battery
+**Tradability.** The deep-ITM basis had standard deviation 0.82, but the relevant spread was 21 ticks. The identity was therefore useful for pricing and quoting, not as executable arbitrage. Flow analysis also showed that the option business was strongly one-sided, making underlying delta hedging and inventory control essential.
 
-The same tests run on every product in every round. Five notebooks, one procedure — the point
-being that the conclusions come out of a fixed process rather than being assembled per round.
+**Validation.** Replaying the original submitted source explained **740 / 740 exchange fills**, and reconstructed orders were identical to the logged orders at **9,986 / 10,000 timestamps**. Counterfactual threshold tests showed that simply opening the inactive voucher gate would have worsened simulated performance; this separates the visible operational symptom from the deeper strategy-design issue.
 
-| | what it separates |
-|---|---|
-| variance ratio | trending / mean-reverting / random walk |
-| autocorrelation decay | slow reversion from instantaneous noise — **the variance ratio cannot** |
-| depth imbalance vs the outer fair | short-horizon predictability |
-| group sums and fitted spreads | identities from curve fits |
-| flow by aggressor × spread | what is actually available to earn |
-| forward move after each counterparty | information content, per day, never pooled |
+**Conclusion.** Round 3 demonstrates the full research chain: identify the price process, distinguish model-based value from structural value, compare signal magnitude with execution cost, account for one-sided flow and inventory, and test the original implementation against exchange evidence.
 
-Two results this produced that a per-round approach would miss:
+[Round 3 analysis](rounds/03/) · [research notebook](research/round3.ipynb) · [strategy specification](rounds/03/answer.md) · [interactive replay](rounds/03/replay/vev-4000.html)
 
-**Depth imbalance is a property of one market, not of the exchange.** Coefficient +2.4 to +2.6
-with $t \approx 40$ in Rounds 1–2, and nothing at all ($|t| \le 1.3$) in Rounds 3–4. Carrying it
-across would have added a term with no support.
+## Decision Reconstruction / Replay Engine
 
-**The variance ratio has a blind spot.** Round 1's ROOT residual has VR(200) = 0.005 — lower
-than ASH's 0.011 — yet it is untradeable white noise, gone by the next tick. Only the
-autocorrelation decay separates them: ASH stays above 0.5 for 76–213 lags, ROOT's residual for
-two.
+The replay system is the repository's audit layer. It:
 
----
+- rebuilds each `TradingState` from the exchange log;
+- executes the **original submitted source**, rather than a paraphrased reimplementation;
+- traces internal variables, comparisons, and branches;
+- reconstructs the orders emitted at each timestamp; and
+- matches those orders against actual exchange fills by timestamp, side, and compatible price.
 
-## How the reconstruction works
+| Round | Exchange fills explained | Additional validation |
+|---|---:|---|
+| 1 | **763 / 763 (100%)** | interactive decision traces |
+| 2 | **632 / 632 (100%)** | interactive decision traces |
+| 3 | **740 / 740 (100%)** | orders identical on **9,986 / 10,000** timestamps |
+| 4 | **1,270 / 1,272 (99.84%)** | remaining mismatch retained as a limitation |
 
-The exchange returns the order book for all 10,000 timestamps and every fill, but nothing about
-the algorithm's internal state — the submissions printed nothing, so all 10,000 log entries are
-empty. Explaining *why* a decision was taken requires recovering that state.
+This makes the retrospective falsifiable: an explanation is useful only if the original code, reconstructed state, emitted orders, and observed fills agree.
 
-**Method.** The unmodified submission source is executed under `sys.settrace`, one timestamp at
-a time, against `TradingState` objects rebuilt from the log. Matching is not simulated: the book
-and the fills are the real ones. Running the original source rather than a re-implementation is
-deliberate — a re-implementation drifts, and the account then describes a paraphrase.
+[R1 ASH replay](rounds/01/replay/ash.html) · [R2 ROOT replay](rounds/02/replay/root.html) · [R3 VEV 4000 replay](rounds/03/replay/vev-4000.html) · [R4 HYDROGEL replay](rounds/04/replay/pack.html)
 
-**It is only usable if it is falsifiable**, so it is checked against the fills the exchange
-actually awarded: every own trade must be explained by an order the replay emits at that
-timestamp, on the right side, at a compatible price.
+## Manual Trading
 
-| Round | own trades | explained |
-|---|---:|---:|
-| 1 | 763 | **100%** |
-| 2 | 632 | **100%** |
-| 3 | 740 | **100%** |
-| 4 | 1,272 | 99.84% |
+The manual track finished **#225 overall** and contributed 225,345 XIRECs across the three rounds scored individually, versus 77,736 from those rounds' algorithmic submissions. It tested sealed-bid sizing, game-theoretic resource allocation, strategic bidding, option-portfolio construction, and news-driven allocation under nonlinear fees.
 
-Round 3 allows a second, independent check: that submission printed its orders every tick, so
-the replay can be compared directly against what was sent — **9,986 of 10,000 timestamps
-identical**.
+The strongest single-round result was **Round 4 manual: 72,278 XIRECs and rank #178**. The manual review preserves the submitted answers and scores, distinguishes surviving evidence from missing working, and analyzes payoff geometry and sizing without replacing the historical record.
 
-**Open in a browser and drag the timeline:**
-[R1 · ASH](rounds/01/replay/ash.html) · [R1 · ROOT](rounds/01/replay/root.html) ·
-[R2 · ASH](rounds/02/replay/ash.html) · [R2 · ROOT](rounds/02/replay/root.html)
+[Read the manual track](manual/)
 
-Every frame shows the book, my own resting quotes, the fair price, and a line-by-line account of
-that instant's decision — which branches fired, both sides of every comparison, and why the
-alternative was not taken.
+## Five-Round Map
 
----
+| Round | Market theme | What was tested | Best validated takeaway | Materials |
+|---|---|---|---|---|
+| 1 | Trend and mean reversion | price-process identification; depth imbalance | autocorrelation persistence is needed to distinguish reversion from one-tick residual noise | [Round 1](rounds/01/) |
+| 2 | Regime stability | structural parameters versus estimates | revalidate estimated signals across days; do not confuse scored-day PnL with predictive evidence | [Round 2](rounds/02/) |
+| 3 | Spot and options | fair value, flow, hedging, execution | structural option value can dominate fitted value, yet remain non-arbitrageable after spread | [Round 3](rounds/03/) |
+| 4 | Counterparty identities | incremental information and stability | per-day validation rejected a pooled counterparty effect as insufficiently robust | [Round 4](rounds/04/) |
+| 5 | Fifty cross-asset products | relationship selection under breadth | one stable basket identity survived; fitted pairs did not show spread reversion | [Round 5](rounds/05/) |
 
-## On the numbers
+## Repository Structure
 
-What my submissions scored comes from the exchange log and is exact.
-
-What a *different* strategy would have scored comes from a simulator replaying a fixed recording
-of the book and the tape. **That recording already contains the effect of the algorithm that
-traded that day and cannot react to a different one.** Such figures support comparisons between
-strategies on the same recording; they do not establish what a strategy would have scored live.
-
-Simulator error against the exchange, running my own submissions: **0.13%** (R1), **0.02%**
-(R2), **−1,733 on one product** (R3), **+9.8%** (R4 — fails calibration, and that round's
-conclusions are drawn without it).
-
-Each specification ends with an evidence table mapping every rule to the measurement behind it.
-Three items are marked as not measurable and are labelled rather than dressed up:
-
-- Round 1's saturation deviation $K$ — a risk preference, not an estimate
-- Round 2's regime gate — the diagnosis holds, the implementation is not yet net-positive, and
-  the reason is stated instead of tuned away
-- Round 5's reported 389,000 on one product — not reproducible here, and bounded above by
-  ~13,000 under a 10-lot limit; recorded, not adopted
-
----
-
-## Layout
-
+```text
+rounds/01..05/     round summaries, evidence-backed specifications, and interactive replays
+research/          notebooks for statistical diagnosis and derivation
+submissions/       original competition-time algorithms, preserved unmodified
+tools/             replay, tracing, validation, and benchmarking utilities
+manual/            manual-trading submissions, results, and retrospective analysis
+assets/            leaderboard and research figures generated from the analyses
+data/              instructions for obtaining the competition market data
 ```
-rounds/01..05/     one README and one specification per round, plus replays
-research/          the derivation for each round: load, plot, test, conclude
-submissions/       the five algorithms as submitted, unmodified
-tools/             replay engine, the test battery, benchmarks
-assets/            figures, generated by the notebooks
-data/              how to obtain the market data
-```
+
+## Limitations
+
+- Competition scores and fills are historical exchange records; counterfactual strategies are evaluated on fixed recordings that cannot react to changed orders.
+- Simulator agreement varies by round. It closely reproduces Rounds 1–3, while the Round 4 calibration error is material; conclusions that depend on that simulation are not claimed.
+- Some manual-round reasoning artifacts were not preserved. The repository labels missing evidence rather than reconstructing it as fact.
+- A stable identity or predictive statistic is not automatically tradeable. Spread, depth, fees, position limits, one-sided flow, and inventory risk remain part of every conclusion.
+- No retrospective or simulated result is presented as an official rank, live performance, or evidence that a revised strategy would have placed in the Top 100.
+
